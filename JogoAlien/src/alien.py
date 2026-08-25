@@ -12,7 +12,7 @@ class Alien(Sprite):
         self.settings = alien_invasion_settings
 
         # Carrega a imagem do alienígena e obtém seu rect
-        self.image = pygame.image.load("../images/cf_peq.bmp")
+        self.image = pygame.image.load("images/cf_peq.bmp")
         self.rect = self.image.get_rect()
 
         # Inicia cada novo alienígena próximo à parte superior esquerda da tela
