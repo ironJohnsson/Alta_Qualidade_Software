@@ -36,7 +36,15 @@ class Alien(Sprite):
         )  # Atualiza a posição do rect do alienígena com base na nova coordenada x
 
     def check_edges(self):
-        """Retorna True se o alienígena estiver na borda da tela."""
+        """Retorna True se o alienígena alcançou a borda da tela na direção atual."""
         screen_rect = self.screen.get_rect()
-        if self.rect.right >= screen_rect.right or self.rect.left <= 0:
+        if self.settings.fleet_direction > 0 and self.rect.right >= screen_rect.right:
             return True
+        if self.settings.fleet_direction < 0 and self.rect.left <= 0:
+            return True
+        return False
+
+    def check_bottom(self):
+        """Retorna True se o alienígena atingiu a parte inferior da tela."""
+        screen_rect = self.screen.get_rect()
+        return self.rect.bottom >= screen_rect.bottom
