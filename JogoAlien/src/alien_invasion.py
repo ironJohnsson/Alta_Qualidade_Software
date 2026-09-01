@@ -1,5 +1,6 @@
 import sys
-
+from fast_alien import FastAlien
+from alien import Alien
 import pygame
 from bullet_manager import BulletManager
 from fleet_manager import FleetManager
@@ -28,7 +29,7 @@ class AlienInvasion:
         self.bg_color = self.settings.bg_color
 
         self.bullet_manager = BulletManager(self.screen, self.settings, self.ship)
-        self.fleet_manager = FleetManager(self.screen, self.settings, self.ship)
+        self.fleet_manager = FleetManager(self.screen, self.settings, self.ship, FastAlien)
         self.event_handler = GameEventHandler(self.ship, self.bullet_manager)
         self.renderer = GameRenderer(self.screen, self.bg_color, self.ship, self.fleet_manager.aliens, self.bullet_manager.bullets)
 
