@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
 
+from interfaces import *
+
 
 class Desconto(ABC):
     @abstractmethod
@@ -7,14 +9,26 @@ class Desconto(ABC):
         pass
 
 
-class DescontoNormal(Desconto):
+class DescontoNormal(IDesconto):
     def calcular(self,valor):
         return (valor * 0.1)
 
-class DescontoVip(Desconto):
+class DescontoVip(IDesconto):
+
+    def calcular(self,valor):
+        return (valor * 0.2)
+    
+
+class DescontoPremium(IDesconto):
+    def calcular(self,valor):
+        return (valor * 0.3)
+
+class vip(IDesconto,ICupom,IUsuario):
     def calcular(self,valor):
         return (valor * 0.2)
 
-class DescontoPremium(Desconto):
-    def calcular(self,valor):
-        return (valor * 0.3)
+    def aplicar_cupom(self,codigo):
+        return True
+
+    def validar_usuario_vip(self,usuario):
+        return usuario=="vip"

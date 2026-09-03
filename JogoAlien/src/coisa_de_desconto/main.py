@@ -1,23 +1,24 @@
-from Desconto import DescontoNormal, DescontoPremium, DescontoVip
+from Desconto import Desconto, DescontoNormal, DescontoVip, DescontoPremium, vip
+
+def aplicar_desconto(desconto: Desconto, valor: float) -> float:
+    return desconto.calcular(valor)
+
+def aplicar_cupom(desconto: vip, codigo: str) -> bool:
+    return desconto.aplicar_cupom(codigo)
 
 
-def main():
-    valor = float(input("Digite o valor da compra: "))
-    tipo = input("Digite o tipo de cliente (normal, vip, premium): ").strip().lower()
 
-    if tipo == "normal":
-        desconto = DescontoNormal()
-    elif tipo == "vip":
-        desconto = DescontoVip()
-    elif tipo == "premium":
-        desconto = DescontoPremium()
-    else:
-        print("Tipo de cliente inválido.")
-        return
-
-    valor_final = desconto.calcular(valor)
-    print(f"Valor final: R$ {valor_final:.2f}")
 
 
 if __name__ == "__main__":
-    main()
+    valor = 100.0
+
+    desconto_normal = DescontoNormal()
+    desconto_vip = DescontoVip()
+    desconto_premium = DescontoPremium()
+
+    print(f"Desconto Normal: {aplicar_desconto(desconto_normal, valor)}")
+    print(f"Desconto VIP: {aplicar_desconto(desconto_vip, valor)}")
+    print(f"Desconto Premium: {aplicar_desconto(desconto_premium, valor)}")
+
+    print("Cupom VIP:", aplicar_cupom(vip(), "DESC10"))
