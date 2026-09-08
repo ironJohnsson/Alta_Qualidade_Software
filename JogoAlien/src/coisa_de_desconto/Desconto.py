@@ -1,34 +1,41 @@
-from abc import ABC, abstractmethod
-
-from interfaces import *
+import abc
 
 
-class Desconto(ABC):
-    @abstractmethod
-    def calcular(self,valor):
-        pass
+class IDesconto(abc.ABC):
+    @abc.abstractmethod
+    def calcular(self, valor):
+        raise NotImplementedError
 
 
 class DescontoNormal(IDesconto):
-    def calcular(self,valor):
-        return (valor * 0.1)
+    def calcular(self, valor):
+        return valor * 0.1
 
-class DescontoVip(IDesconto):
 
-    def calcular(self,valor):
-        return (valor * 0.2)
-    
+class DescontoVIP(IDesconto):
+    def calcular(self, valor):
+        return valor * 0.2
+
 
 class DescontoPremium(IDesconto):
-    def calcular(self,valor):
-        return (valor * 0.3)
+    def calcular(self, valor):
+        return valor * 0.3
 
-class vip(IDesconto,ICupom,IUsuario):
-    def calcular(self,valor):
-        return (valor * 0.2)
 
-    def aplicar_cupom(self,codigo):
-        return True
+class Pedido:
+    def __init__(self, desconto: IDesconto):
+        self.desconto = desconto
 
-    def validar_usuario_vip(self,usuario):
-        return usuario=="vip"
+    def total(self, valor):
+        return valor - self.desconto.calcular(valor)
+
+
+if __name__ == "__main__":
+    pedido_normal = Pedido(DescontoNormal())
+    print(pedido_normal.total(100))
+
+    pedido_vip = Pedido(DescontoVIP())
+    print(pedido_vip.total(100))
+
+    pedido_premium = Pedido(DescontoPremium())
+    print(pedido_premium.total(100))
