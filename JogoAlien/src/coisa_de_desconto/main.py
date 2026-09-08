@@ -1,5 +1,12 @@
 from Desconto import Desconto, DescontoNormal, DescontoVip, DescontoPremium, vip
 
+class pedido:
+    def __init__(self, valor: float, desconto: Desconto):
+        self.desconto = desconto
+
+    def total(self, valor):
+        return valor - self.desconto.calcular(valor)
+    
 def aplicar_desconto(desconto: Desconto, valor: float) -> float:
     return desconto.calcular(valor)
 
