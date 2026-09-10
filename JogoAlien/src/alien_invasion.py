@@ -1,6 +1,4 @@
-import sys
 from fast_alien import FastAlien
-from alien import Alien
 import pygame
 from bullet_manager import BulletManager
 from fleet_manager import FleetManager

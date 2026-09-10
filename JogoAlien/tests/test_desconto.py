@@ -1,5 +1,6 @@
-from src.coisa_de_desconto.Desconto import DescontoNormal, DescontoPremium, DescontoVIP
+from coisa_de_desconto.Desconto import DescontoNormal, DescontoPremium, DescontoVIP
 import pytest
+
 
 @pytest.mark.parametrize("valor, esperado", [
     (100, 30),
