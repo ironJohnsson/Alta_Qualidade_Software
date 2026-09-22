@@ -1,5 +1,5 @@
 import pygame
-from bullet import Bullet
+from Game2D.JogoAlien.src.bullet import Bullet
 
 class BulletManager:
     """responsável por gerenciar os projéteis disparados pela nave."""

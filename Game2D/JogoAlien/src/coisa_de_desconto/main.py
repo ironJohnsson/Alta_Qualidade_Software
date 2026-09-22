@@ -1,4 +1,4 @@
-from Desconto import Desconto, DescontoNormal, DescontoVip, DescontoPremium, vip
+from Game2D.JogoAlien.src.coisa_de_desconto.Desconto import Desconto, DescontoNormal, DescontoVip, DescontoPremium, vip
 
 class pedido:
     def __init__(self, valor: float, desconto: Desconto):

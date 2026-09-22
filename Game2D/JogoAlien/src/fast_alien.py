@@ -1,4 +1,4 @@
-from alien import Alien
+from Game2D.JogoAlien.src.alien import Alien
 
 class FastAlien(Alien):
     """Representa um alienígena rápido que se move mais rapidamente do que os alienígenas normais."""

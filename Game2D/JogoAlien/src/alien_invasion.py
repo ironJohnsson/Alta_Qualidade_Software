@@ -1,11 +1,11 @@
-from fast_alien import FastAlien
+from Game2D.JogoAlien.src.fast_alien import FastAlien
 import pygame
-from bullet_manager import BulletManager
-from fleet_manager import FleetManager
-from game_events import GameEventHandler
-from game_renderer import GameRenderer
-from settings import Settings
-from ship import Ship
+from Game2D.JogoAlien.src.bullet_manager import BulletManager
+from Game2D.JogoAlien.src.fleet_manager import FleetManager
+from Game2D.JogoAlien.src.game_events import GameEventHandler
+from Game2D.JogoAlien.src.game_renderer import GameRenderer
+from Game2D.JogoAlien.src.settings import Settings
+from Game2D.JogoAlien.src.ship import Ship
 
 class AlienInvasion:
     """Gerencia o jogo e seus comportamentos."""

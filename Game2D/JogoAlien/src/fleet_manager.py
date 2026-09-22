@@ -1,7 +1,7 @@
 import sys
 import pygame
-from alien import Alien
-from fast_alien import FastAlien
+from Game2D.JogoAlien.src.alien import Alien
+from Game2D.JogoAlien.src.fast_alien import FastAlien
 
 class FleetManager:
     """responsável por gerenciar a frota de alienígenas."""

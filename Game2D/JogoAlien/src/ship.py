@@ -1,7 +1,7 @@
 import pygame
 from pygame.surface import Surface
 
-from settings import Settings
+from Game2D.JogoAlien.src.settings import Settings
 
 
 class Ship:

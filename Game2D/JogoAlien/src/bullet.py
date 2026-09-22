@@ -2,8 +2,8 @@ import pygame
 from pygame.sprite import Sprite
 from pygame.surface import Surface
 
-from settings import Settings
-from ship import Ship
+from Game2D.JogoAlien.src.settings import Settings
+from Game2D.JogoAlien.src.ship import Ship
 
 
 # Nesse momento é utilizado o conceito de HERANÇA de Orientação a Objetos, onde a classe Bullet herda os atributos e métodos da classe Sprite, que é uma classe do Pygame usada para representar objetos visuais no jogo.
