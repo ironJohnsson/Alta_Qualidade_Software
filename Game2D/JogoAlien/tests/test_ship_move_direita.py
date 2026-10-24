@@ -1,9 +1,9 @@
 import pygame
-from ship import Ship # type: ignore
-from settings import Settings # type: ignore
+from settings import Settings
+from ship import Ship
 
 
-def test_ship_move_direita():
+def test_ship_move_direita() -> None:
     pygame.init()
 
     screen = pygame.display.set_mode((800, 600))

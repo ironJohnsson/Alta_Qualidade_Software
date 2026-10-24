@@ -1,20 +1,27 @@
-from Game2D.JogoAlien.src.coisa_de_desconto.Desconto import Desconto, DescontoNormal, DescontoVip, DescontoPremium, vip
+from coisa_de_desconto.Desconto import (
+    Desconto,
+    DescontoNormal,
+    DescontoPremium,
+    DescontoVip,
+    vip,
+)
+
 
 class pedido:
-    def __init__(self, valor: float, desconto: Desconto):
+    def __init__(self, valor: float, desconto: Desconto) -> None:
+        self.valor = valor
         self.desconto = desconto
 
-    def total(self, valor):
-        return valor - self.desconto.calcular(valor)
-    
+    def total(self) -> float:
+        return self.valor - self.desconto.calcular(self.valor)
+
+
 def aplicar_desconto(desconto: Desconto, valor: float) -> float:
     return desconto.calcular(valor)
 
+
 def aplicar_cupom(desconto: vip, codigo: str) -> bool:
     return desconto.aplicar_cupom(codigo)
-
-
-
 
 
 if __name__ == "__main__":

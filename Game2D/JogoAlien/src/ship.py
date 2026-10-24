@@ -1,14 +1,15 @@
 import pygame
+from pygame.sprite import Sprite
 from pygame.surface import Surface
+from settings import Settings
 
-from Game2D.JogoAlien.src.settings import Settings
 
-
-class Ship:
+class Ship(Sprite):
     """Gerencia a nave espacial."""
 
     def __init__(self, alien_invasion_screen: Surface, alien_invasion_settings: Settings) -> None:
         """Inicializa a nave e define sua posição inicial."""
+        super().__init__()
         self.screen = alien_invasion_screen
         self.settings = alien_invasion_settings
         self.screen_rect = (
@@ -16,7 +17,7 @@ class Ship:
         )  # Rect é uma estrutura usada para representar posições e áreas retangulares
 
         # Carrega a imagem da nave e obtém seu rect
-        self.image = pygame.image.load("./images/cezi_peq.bmp")
+        self.image = pygame.image.load("images/cezi_peq.bmp")
         # o pygame trata os elementos como retangulos, tornando seu processamento eficiente
         self.rect = self.image.get_rect()
         # Posiciona a nave no centro inferior da tela
@@ -55,4 +56,4 @@ class Ship:
             )  # Move a nave para a esquerda diminuindo a coordenada x
 
         # Atualiza o rect object da nave
-        self.rect.x = self.x
+        self.rect.x = int(self.x)

@@ -1,8 +1,22 @@
+from __future__ import annotations
+from typing import Any
+
 import pygame
+from alien import Alien
+from pygame.surface import Surface
+from ship import Ship
+
 
 class GameRenderer:
     """responsável por renderizar os elementos do jogo na tela."""
-    def __init__(self, screen, bg_color, ship, aliens, bullets) -> None:
+    def __init__(
+        self,
+        screen: Surface,
+        bg_color: tuple[int, int, int] | pygame.Color,
+        ship: Ship,
+        aliens: pygame.sprite.Group[Alien],
+        bullets: pygame.sprite.Group[Any],
+    ) -> None:
         self.screen = screen
         self.bg_color = bg_color
         self.ship = ship

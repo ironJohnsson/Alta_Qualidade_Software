@@ -1,49 +1,49 @@
+from __future__ import annotations
 import sys
+
 import pygame
-from Game2D.JogoAlien.src.alien import Alien
-from Game2D.JogoAlien.src.fast_alien import FastAlien
+from alien import Alien
+from pygame.surface import Surface
+from settings import Settings
+from ship import Ship
+
 
 class FleetManager:
     """responsável por gerenciar a frota de alienígenas."""
-    def __init__(self, screen, settings, ship, alien_class=Alien) -> None:
+    def __init__(self, screen: Surface, settings: Settings, ship: Ship, alien_class: type[Alien] = Alien) -> None:
         self.screen = screen
         self.settings = settings
         self.ship = ship
         self.alien_class = alien_class
-        self.aliens = pygame.sprite.Group()  # Cria um grupo para armazenar os alienígenas presentes no jogo
+        self.aliens: pygame.sprite.Group[Alien] = pygame.sprite.Group()  # Cria um grupo para armazenar os alienígenas presentes no jogo
 
-    def _create_alien(self, alien_number:int, row_number:int, alien_width:int, alien_height:int) -> None:
+    def _create_alien(self, alien_number: int, row_number: int, alien_width: int, alien_height: int) -> None:
         """Cria um alienígena e o posiciona na linha."""
         alien = self.alien_class(self.screen, self.settings)  # Cria uma instância da classe Alien
-        alien_width=alien.rect.width
+        alien_width = alien.rect.width
         alien.x = alien_width + 2 * alien_width * alien_number
-        alien.rect.x = alien.x
-        alien_height=alien.rect.height
-        alien.y = alien_height + 2 * alien_height * row_number
-        alien.rect.y = alien.y
+        alien.rect.x = int(alien.x)
+        alien_height = alien.rect.height
+        alien.y = float(alien_height + 2 * alien_height * row_number)
+        alien.rect.y = int(alien.y)
         self.aliens.add(alien)  # Adiciona o alienígena ao grupo de alienígenas
 
+    def create_fleet(self) -> None:
+        """Cria uma frota de alienígenas."""
+        alien = self.alien_class(self.screen, self.settings)  # Cria uma instância da classe Alien
+        alien_width = alien.rect.width
+        alien_height = alien.rect.height
+        available_space_x = self.settings.screen_width - (2 * alien_width)
+        number_aliens_x = available_space_x // (2 * alien_width)
+        ship_height = self.ship.rect.height
+        available_space_y = (
+            self.settings.screen_height - (3 * alien_height) - ship_height
+        )
+        number_rows = available_space_y // (2 * alien_height)
 
-    def create_fleet(self):
-            """Cria uma frota de alienígenas."""
-            # Cria um alienígena e calcula o número de alienígenas em uma linha
-            # O espaçamento entre os alienígenas é igual a um alienígena
-            alien = self.alien_class(self.screen, self.settings)  # Cria uma instância da classe Alien
-            alien_width = alien.rect.width
-            alien_height = alien.rect.height
-            available_space_x = self.settings.screen_width - (2 * alien_width)
-            number_aliens_x = available_space_x // (2 * alien_width)
-            ship_height = self.ship.rect.height
-            available_space_y = (
-                self.settings.screen_height - (3 * alien_height) - ship_height
-            )
-            number_rows = available_space_y // (2 * alien_height)
-    
-            for row_number in range(number_rows):
-                # Cria a primeira linha de alienígenas
-                for alien_number in range(number_aliens_x):
-                    # Cria um alienígena e o posiciona na linha
-                    self._create_alien(alien_number, row_number, alien_width, alien_height)
+        for row_number in range(number_rows):
+            for alien_number in range(number_aliens_x):
+                self._create_alien(alien_number, row_number, alien_width, alien_height)
 
     def _update_aliens(self) -> None:
         """Verifica se a frota de alienígenas está em uma borda da tela e atualiza suas posições."""
@@ -58,7 +58,6 @@ class FleetManager:
             if alien.check_edges():  # Verifica se algum alienígena atingiu a borda da tela
                 self._change_fleet_direction()  # Altera a direção da frota de alienígenas
                 break  # Sai do loop após encontrar o primeiro alienígena que atingiu a borda da tela
-
 
     def _change_fleet_direction(self) -> None:
         """Desce a frota e muda sua direção"""
