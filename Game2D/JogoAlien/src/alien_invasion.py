@@ -18,6 +18,7 @@ class AlienInvasion:
     def __init__(self) -> None:
         """Construtor da classe que inicializa o jogo e cria os recursos básicos"""
         pygame.init()
+        self.clock = pygame.time.Clock()
         self.settings = Settings()
 
         self.screen = pygame.display.set_mode(
@@ -51,8 +52,9 @@ class AlienInvasion:
             self.event_handler._check_events()  # Verifica eventos de pressionamento de teclas e mouse
             self._update_game_state()  # Atualiza a posição da nave, dos projéteis e dos alienígenas
             self.renderer._render_screen()  # Redesenha a tela a cada passagem pelo laço
+            self.clock.tick(60)  # Limita a taxa de atualização a 60 FPS
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     alien_invasion = AlienInvasion()
     alien_invasion.run_game()
