@@ -48,7 +48,7 @@ class Pedido:
         return valor - self.desconto.calcular(valor)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     pedido_normal = Pedido(DescontoNormal())
     print(pedido_normal.total(100))
 

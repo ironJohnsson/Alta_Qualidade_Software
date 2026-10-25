@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./Game2D/JogoAlien/src"
+    ]
+}
