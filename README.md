@@ -4,7 +4,7 @@ Jogo 2D arcade desenvolvido em Python com **Pygame** para a disciplina de **Alta
 
 ---
 
-## 🎮 Como Jogar
+## Como Jogar
 
 Execute no terminal:
 
@@ -16,27 +16,14 @@ python src/alien_invasion.py
 ### Controles
 * **Setas (ou A / D):** Move a nave
 * **Espaço:** Dispara projéteis
-* **Q:** Sai do jogo
 
 ---
 
-## 🧪 Testes e Relatórios
+## Testes
 
-Estando na pasta `Game2D\JogoAlien`:
+Para rodar os testes automatizados:
 
-* **Rodar os testes:**
-  ```powershell
-  pytest
-  ```
-
-* **Gerar relatório HTML de testes:**
-  ```powershell
-  pytest --html=relatorio.html
-  ```
-
-* **Gerar relatório de cobertura (Coverage):**
-  ```powershell
-  coverage run -m pytest
-  coverage html
-  ```
-  *(O relatório visual fica em `htmlcov/index.html`)*
+```powershell
+cd Game2D\JogoAlien
+pytest
+```
